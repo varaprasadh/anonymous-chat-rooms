@@ -1,0 +1,53 @@
+.chat-container-wrapper{
+  display: flex;
+  /* justify-content: center; */
+  flex: 1;
+}
+.chat-container{
+ max-width: 600px;
+ background: rgb(0, 0, 0);
+ flex: 1;
+ display: flex;
+ flex-direction:column;
+}
+.chat-container .chat{
+    flex: 1;
+}
+.chat-container .controls{
+    display: flex;
+    align-items: center;
+    background: white;
+    font-size: 2rem;
+    border:1px solid rgb(222, 222, 223);
+}
+
+.button{
+    padding:10px 16px;
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+.button.help{
+
+}
+.button.send{
+    background: rgb(13, 19, 99);
+}
+.input-element{
+    flex: 1;
+}
+.input-element input{
+    width: 100%;
+    font-size: 1.4rem;
+    border: none;
+    outline: none;
+}
+
+@media screen and (min-width:600px){
+   .chat-container-wrapper {
+       justify-content: center;
+       margin-bottom: 2rem;
+   }
+}
