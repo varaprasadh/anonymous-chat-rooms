@@ -1,7 +1,53 @@
 .nav{
     /* background: rgb(247, 247, 247); */
     padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .logo img{
-    width:7rem;
+    width:5rem;
+}
+nav .button{
+    color: rgb(221, 64, 37);
+    transition:all 0.3s linear;
+}
+nav .button:hover{
+    transform: scale(0.9);
+}
+.room-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.room-name{
+    padding:5px 10px;
+    font-weight: bold;
+    font-size: 1.5em;
+    color: rgb(28, 28, 114);
+}
+
+.room-stats{
+    color: green;
+    display: flex;
+    align-items: center;
+}
+.stats.online{
+    margin-left: 5px;
+}
+.nav-actions{
+    display: flex;
+}
+.nav-actions .action{
+    padding: 0.5rem;
+    cursor: pointer;
+}
+.nav-actions .action.invite{
+    color: rgb(0, 0, 0);
+}
+.nav-actions .action.exit{
+    color: rgb(230, 77, 77);
+}
+.nav-actions .action:hover{
+    transform: scale(0.9);
 }
