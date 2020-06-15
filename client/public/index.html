@@ -17,12 +17,93 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
 
-    <title>React App</title>
+    <title>Anonymous Chat Rooms</title>
+    
+    <style>
+      .splash{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .splash img{
+        width: 200px;
+        height: 200px;
+      }
+      .splash .loader{
+         width: 200px;
+         height: 10px;
+         background: rgb(211, 195, 233);
+         margin-top: 1rem;
+         position: relative;
+         overflow: hidden;
+      }
+      .splash .loader .line{
+        background: rgb(14, 12, 12);
+        height: 100%;
+        animation: load 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
+        position: absolute;
+        top:0px;
+      }
+      .load-label{
+        font-weight: bold;
+        padding: 1rem;
+      }
+      @keyframes load{
+        0%{
+           width: 10%;
+           left:0%;
+        }
+        50%{
+          width:50%;
+          left:0%;
+        }
+        100%{
+          width:90%;
+          left:100%;
+        }
+      }
+    </style>
+
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
-      <!-- react will handle you -->
+      <div class="splash">
+          <div class="img">
+              <svg xmlns="http://www.w3.org/2000/svg" width="332" height="285.837" viewBox="0 0 332 285.837">
+                <g id="Group_3" data-name="Group 3" transform="translate(-85 -107.163)">
+                  <g id="Group_2" data-name="Group 2" transform="translate(0 26)">
+                    <g id="Group_1" data-name="Group 1" transform="translate(5 -27)">
+                      <path id="Icon_weather-alien" data-name="Icon weather-alien"
+                        d="M17.4,109.437q-17.921-38.4,5.547-72.429C33.931,21.221,50.678,11.513,73.4,7.993a29.818,29.818,0,0,1,5.76-.853h6.72c31.041.96,53.869,14.721,68.269,41.388,6.827,12.587,8.534,26.454,5.12,41.708a112.624,112.624,0,0,1-13.654,33.815c-13.761,21.441-28.054,38.828-42.668,52.055a33.233,33.233,0,0,1-3.2,2.773c-4.907,3.733-9.494,5.654-13.654,5.76s-8.854-1.493-13.974-4.8a35.954,35.954,0,0,1-7.894-6.294C43.318,152.212,27.637,130.878,17.4,109.437ZM18.57,85.863c.213,1.173.533,2.667.96,4.693s.747,3.413.96,4.267c2.987,13.44,9.174,23.788,18.454,31.254,9.387,7.467,20.907,11.84,34.775,13.12q4.64.48,5.44-.32c.533-.533.853-2.453.96-5.547-.107-.853-.32-2.24-.533-4.16a35.154,35.154,0,0,0-.64-4.16c-2.667-14.294-9.387-24.748-20.267-31.254-1.92-1.173-4.16-2.347-6.614-3.627S47.371,88,45.558,87.25s-4.267-1.707-7.36-2.88-5.334-2.027-6.72-2.667a28.215,28.215,0,0,0-8.534-1.173C19.53,80.529,18.037,82.343,18.57,85.863ZM91.106,132.8c-.213,3.307,0,5.227.64,5.974.747.747,2.667.853,5.867.427a102.167,102.167,0,0,0,12.8-2.347,50.068,50.068,0,0,0,27.948-18.241,46.952,46.952,0,0,0,8.214-14.294,127,127,0,0,0,5.014-18.347c.533-2.453.427-4.053-.32-4.907s-2.347-1.173-4.694-.853a98.367,98.367,0,0,0-16.961,4.267c-12.267,4.587-21.547,10.774-27.948,18.561C95.266,110.93,91.746,120.744,91.106,132.8Z"
+                        transform="translate(132.374 153.86)" />
+                      <text id="Chat_Rooms" data-name="Chat Rooms" transform="translate(80 379)" font-size="59"
+                        font-family="SegoeUI-BoldItalic, Segoe UI" font-weight="700" font-style="italic">
+                        <tspan x="0" y="0">Chat Rooms</tspan>
+                      </text>
+                      <text id="Anonymous" transform="translate(103 330)" font-size="14" font-family="SegoeUI-BoldItalic, Segoe UI"
+                        font-weight="700" font-style="italic">
+                        <tspan x="0" y="0">Anonymous</tspan>
+                      </text>
+                    </g>
+                    <path id="Icon_awesome-reddit-alien" data-name="Icon awesome-reddit-alien"
+                      d="M9.545,35.011,18.159-3.8,45.586,2.36a12.21,12.21,0,0,0,12.19,12.19A12.4,12.4,0,0,0,70.121,2.2,12.375,12.375,0,0,0,57.776-10.14,12.518,12.518,0,0,0,46.8-3.3L16.511-10.016A2.9,2.9,0,0,0,13.09-7.808L3.637,34.98C-12.813,35.664,26.12,35.54,9.545,35.011Z"
+                      transform="translate(203.204 115.759) rotate(-21)" />
+                  </g>
+                  <path id="Icon_material-message" data-name="Icon material-message"
+                    d="M42.753,3H7.417A4.411,4.411,0,0,0,3.022,7.417L3,47.17l8.834-8.834H42.753a4.43,4.43,0,0,0,4.417-4.417V7.417A4.43,4.43,0,0,0,42.753,3ZM38.336,29.5h-26.5V25.085h26.5Zm0-6.626h-26.5V18.46h26.5Zm0-6.626h-26.5V11.834h26.5Z"
+                    transform="translate(269 304)" />
+                </g>
+              </svg>
+          </div>
+          <div class="loader">
+            <div class="line"></div>
+          </div>
+          <div class="load-label">please wait!</div>
+      </div>
+      
     </div>
       
   </body>

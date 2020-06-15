@@ -9,12 +9,6 @@ import {useHistory,} from 'react-router-dom';
 
 import Action from "./components/Action";
 
-const COMMANDS={
-  REPEAT:"REPEAT",
-}
-const ACTIONS={
-    BLINK: "BLINK",
-}
 
 function Chat() {
 
@@ -26,6 +20,11 @@ function Chat() {
   const [action,setAction]=useState(false);
   const [actionType,setActionType]=useState(null);
   const [actionData, setActionData] = useState(null);
+
+  const [connecting, setConnecting]=useState(true);
+  const [connected, setConnected] = useState(false);
+  const [connectionError, setConnectionError] = useState(false);
+
 
   const socket=useRef();
   const emitMessage=(data)=>{
@@ -39,8 +38,9 @@ function Chat() {
     let urlparams=new URLSearchParams(window.location.search);
     let username=urlparams.get('username');
     let room=urlparams.get('room');
-    //console.log(username,room,"yes");
-    socket.current=socketio("https://localhost:3001");
+
+    socket.current = socketio();  //production
+    // socket.current = socketio("http://localhost:3001"); //development
     socket.current.on('connect',()=>{
         socket.current.emit('JOIN_ROOM',{username,room});
         socket.current.on('MESSAGE',(data)=>{
@@ -48,18 +48,7 @@ function Chat() {
         });
         //commands for component content
         socket.current.on('COMMAND',CMD_data=>{
-         /*
-           username: user.username,
-           id: user.id,
-           time: moment().format("h:mm a"),
-           type: parseType,
-           content: data,
-           isSelf: false
-         */
-         if(CMD_data.type===COMMANDS.REPEAT){
-               let messageData={...CMD_data,content:(CMD_data.content || "").repeat(CMD_data.times||1)}
-               setMessages(messages=>[...messages,<Message key={messages.length} message={messageData}/>])
-         }
+            //todo
         })
         //actions on ui screen
         socket.current.on('ACTION',data=>{
@@ -91,8 +80,19 @@ function Chat() {
              let params=new URLSearchParams(window.location.search);
              history.replace(`/?${params.toString()}`)
           },2000);
-        })
+        });
+       //show an alert on connection
+        setConnecting(false);
+        setConnected(true);
+        setTimeout(() => setConnected(false), 2000);
     })
+      socket.current.on('reconnecting', () => {
+        setConnecting(true);
+      })
+      socket.current.on('error', () => {
+        setConnectionError(true);
+      })
+
     return () => {
       socket.current.close();
     }
@@ -100,7 +100,10 @@ function Chat() {
 
   return (
     <div id="app">
-      <ChatView emitAction={emitAction} emitMessage={emitMessage} roomInfo={roomInfo} messages={messages}/>
+       {connecting && <div className="snakebar overlay"><WarnMessage message="connecting..."/></div>}
+       {connected && <div className="snakebar"><InfoMessage message="connected"/></div>}
+       {connectionError && <div className="snakebar"><WarnMessage message="unable to connect"/></div>}
+       <ChatView emitAction={emitAction} emitMessage={emitMessage} roomInfo={roomInfo} messages={messages}/>
       {action && <Action onDone={()=>setAction(false)} type={actionType} data={actionData}/>}
     </div>
   );

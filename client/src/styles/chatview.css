@@ -18,10 +18,10 @@
     overflow-x: hidden;
 }
 .chat-container .chat::-webkit-scrollbar{
-    width: 10px;
+    width: 3px;
 }
 .chat-container .chat::-webkit-scrollbar-thumb{
-    width: 20px;
+    width: 3px;
     background: rgb(253, 253, 253);
     border-radius: 10px;
 }

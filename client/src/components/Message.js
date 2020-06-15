@@ -25,7 +25,7 @@ function Message({message}) {
             }else if(startTag==="blur"){
                 content=<BlurText text={targetText}/>
             }else if(startTag==="lt" && ['LIKE','DISLIKE','HEART','STAYHOME'].indexOf(targetText.toUpperCase())!==-1){
-                content=getFromcomponentMap({data:message,type:targetText.toUpperCase(),width:200,height:200,hideMessage:true});
+                content=getFromcomponentMap({data:message,type:targetText.toUpperCase(),width:150,height:150,hideMessage:true});
             }
         }
     }
@@ -34,9 +34,11 @@ function Message({message}) {
            <div className="message-container">
                <div className="message">
                    <div className="message-main">
-                       <div className="avatar">{username[0]}</div>
-                        <div className="message-content">
+                        <div className="sender">
+                            <div className="avatar">{username[0]}</div>
                             <div className="username">{username}</div>
+                        </div>
+                        <div className="message-content">
                             <div className="content">{content}</div>
                             <div className="time">{time}</div>
                         </div>

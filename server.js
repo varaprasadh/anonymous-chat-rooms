@@ -7,13 +7,14 @@ const moment=require('moment');
 
 const fs=require('fs');
 
-
+const router=require("./routes/router");
 
 app.use(cors());
 
-app.get("/", (req, res) => {
-    res.end("connected")
-});
+app.use(express.static("build"));
+
+app.use(router);
+
 
 const httpServer = require('http').createServer(app);
 const io = socketio(httpServer);
@@ -123,6 +124,7 @@ io.on('connection', socket => {
 
 
 const PORT = process.env.PORT || 3001;
+
 
 //start the server
 httpServer.listen(PORT, () => {

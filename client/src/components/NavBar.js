@@ -2,8 +2,10 @@ import React from 'react'
 import transparentLogo from "../assets/transparent.png";
 import "../styles/nav.css";
 import {FaGlobe,FaSignOutAlt,FaShareAlt} from "react-icons/fa/index.esm";
-import {useState} from 'react'
+import {useState} from 'react';
+import {useHistory} from 'react-router-dom'
 const NavBar = ({roomInfo}) => {
+    const history=useHistory();
     const params=new URLSearchParams(window.location.search);
     params.delete("username");
     const shareURL = `${window.location.origin}?${params.toString()}`;
@@ -18,11 +20,10 @@ const NavBar = ({roomInfo}) => {
                     })
                     .then(() => console.log('Successful share'))
                     .catch((error) => console.log(error));
-            } else {
-               navigator.clipboard.writeText(shareURL);
-               setShowdialogue(true);
-               setTimeout(()=>setShowdialogue(false),1000);
             }
+            navigator.clipboard.writeText(shareURL);
+            setShowdialogue(true);
+            setTimeout(()=>setShowdialogue(false),1000);
         }
     return (
        <nav className="nav">
@@ -43,7 +44,7 @@ const NavBar = ({roomInfo}) => {
                  <div>invite</div>
 
              </div>
-              <div className="action exit">
+              <div className="action exit" onClick={()=>history.replace("/")}>
                   <FaSignOutAlt size={25}/>
                   <div>exit</div>
               </div>

@@ -2,14 +2,30 @@ body,html{
   margin: 0px;
   padding: 0px;
 }
+.app-full-screen{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
 #app {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  flex: 1;
   box-sizing: border-box;
   font-family: sans-serif;
   position: relative;
 }
 *{
   box-sizing: border-box;
+}
+.snakebar{
+  position: absolute;
+  width: 100%;
+}
+.snakebar.overlay{
+  height: 100%;
+  background: rgba(0, 0, 0, 0.774);
+  z-index: 100;
 }
