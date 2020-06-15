@@ -5,8 +5,8 @@ const path=require('path');
 const cors=require('cors');
 const moment=require('moment');
 
+const fs=require('fs');
 
-const PORT=process.env.PORT || 3001;
 
 
 app.use(cors());
@@ -54,7 +54,8 @@ const types={
     RAW:"RAW",      //raw data from client
     COMMAND:"COMMAND", // command 
     WELCOME: "WELCOME", //welcome msg
-    EXIT:"EXIT"       // exit message
+    EXIT:"EXIT",      // exit message,
+    ACTION:"ACTION"  //UI action
 }
 
 const parseMessage=(user,{data},parseType)=>{
@@ -96,6 +97,16 @@ io.on('connection', socket => {
        }else{
            socket.emit("ACCESS_DENIED",null);
        }
+   });
+   socket.on('ACTION',type=>{
+       let user=findUser(socket.id);
+       if(user){
+           let parsedMessage=parseMessage(user,{},type);
+           socket.emit('ACTION',{...parsedMessage,isSelf:true});
+           socket.to(user.room).emit('ACTION', parsedMessage);
+       }else{
+           socket.emit("ACCESS_DENIED",null);
+       }
    })
    socket.on('disconnect',()=>{
       let user=removeUser(socket.id);
@@ -111,6 +122,7 @@ io.on('connection', socket => {
 });
 
 
+const PORT = process.env.PORT || 3001;
 
 //start the server
 httpServer.listen(PORT, () => {

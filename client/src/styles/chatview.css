@@ -1,6 +1,5 @@
 .chat-container-wrapper{
   display: flex;
-  /* justify-content: center; */
   flex: 1;
 }
 .chat-container{
@@ -16,6 +15,7 @@
     flex: 1 0 100px;
     overflow-y: scroll;
     padding: 1rem;
+    overflow-x: hidden;
 }
 .chat-container .chat::-webkit-scrollbar{
     width: 10px;
@@ -61,4 +61,20 @@
        justify-content: center;
        margin-bottom: 2rem;
    }
+}
+
+.actions-container {
+    display: flex;
+    background: white;
+    justify-content: space-around;
+}
+
+.actions-container .action{
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) ;
+}
+
+.actions-container .action:hover{
+    transform: scale(0.8);
 }

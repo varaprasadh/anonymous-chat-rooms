@@ -1,0 +1,16 @@
+.picker-wrapper{
+    background: white;
+    width: 100%;
+    overflow-y: scroll;
+    max-height: 200px;
+    user-select: none;
+}
+
+.emoji{
+    font-size: 2rem;
+    cursor: pointer;
+    user-select: none;
+}
+.emoji:hover{
+  background: blue;
+}

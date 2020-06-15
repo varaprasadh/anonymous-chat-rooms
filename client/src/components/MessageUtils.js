@@ -1,5 +1,7 @@
-import React from 'react';
-import "../styles/infomessage.css";
+import React, { useState } from 'react';
+import "../styles/messageutils.css";
+import {useEffect} from 'react'
+
 function InfoMessage({message}) {
     return (
         <div className="info-message-wrapper">
@@ -18,6 +20,32 @@ function WarnMessage({message}) {
         </div>
     )
 }
+const BigEmoji=({emoji})=><div style={{fontSize:"5em"}}>{emoji}</div>
 
-export {InfoMessage,WarnMessage};
+const Animatedtext=({text})=>{
+    return(
+        <div className="animated-text">
+            <div className="line-1 anim-typewriter">{text}</div>
+        </div>
+    )
+}
+const BlurText=({text})=>{
+    return(
+        <div className="filter">
+            <span className="blur">{text}</span>
+        </div>
+    )
+}
+
+
+export {
+    InfoMessage,
+    WarnMessage,
+    BigEmoji,
+    Animatedtext,
+    BlurText
+};
+
+
+
 

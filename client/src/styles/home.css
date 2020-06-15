@@ -14,9 +14,10 @@
     width: 15rem;
 }
 .input-wrapper{
-    display: flex;
-    flex-direction: column;
     margin: 1rem 5px;
+}
+.input-wrapper.error input{
+    background: rgb(252, 107, 107);
 }
 
 .form{
