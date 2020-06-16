@@ -1,5 +1,5 @@
 <p align='center'>
- <img src='./client/public/android-icon-192x192.png' />
+ <img src='files/icon_192.png'/>
 </p>
 
 # anonymous chat rooms
@@ -17,13 +17,11 @@
 
 <div style="display:flex;align-items:flex-end">
 <figure>
-    <img src="https://www.gstatic.com/mobilesdk/160503_mobilesdk/logo/2x/firebase_48dp.png">
-    <figcaption>firebase-hosting</figcaption>
+    <img src="https://www.gstatic.com/mobilesdk/160503_mobilesdk/logo/2x/firebase_48dp.png" title="firebase hosting" alt="firebase hosting">
 </figure>
-
+ 
 <figure>
-    <img src="https://brand.heroku.com/static/media/heroku-logo-stroke.aa0b53be.svg">
-   <figcaption>heroku-free tier dyno</figcaption>
+    <img src="https://brand.heroku.com/static/media/heroku-logo-stroke.aa0b53be.svg" title="heroku free tier dyno" alt="heroku free tier dyno">
 </figure>
 </div>
 
