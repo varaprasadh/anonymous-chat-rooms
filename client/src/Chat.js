@@ -9,6 +9,9 @@ import {useHistory,} from 'react-router-dom';
 
 import Action from "./components/Action";
 
+const API_URL = "https://anonymouschatrooms.herokuapp.com"; //PROD
+// const API_URL = "http://localhost:3001"; //DEV
+
 
 function Chat() {
 
@@ -39,8 +42,7 @@ function Chat() {
     let username=urlparams.get('username');
     let room=urlparams.get('room');
 
-    socket.current = socketio();  //production
-    // socket.current = socketio("http://localhost:3001"); //development
+    socket.current = socketio(API_URL);
     socket.current.on('connect',()=>{
         socket.current.emit('JOIN_ROOM',{username,room});
         socket.current.on('MESSAGE',(data)=>{
