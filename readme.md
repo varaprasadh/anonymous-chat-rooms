@@ -9,8 +9,24 @@
 ![](https://img.shields.io/badge/version-0.0.1-red)
 
 
+> try out the app at [https://anonymous-chatrooms.web.app/](https://anonymous-chatrooms.web.app/)
 
  it is a open source chat app runs on react and nodejs powered by   socket.io
+
+### deployed on 
+
+<div style="display:flex;align-items:flex-end">
+<figure>
+    <img src="https://www.gstatic.com/mobilesdk/160503_mobilesdk/logo/2x/firebase_48dp.png">
+    <figcaption>firebase-hosting</figcaption>
+</figure>
+
+<figure>
+    <img src="https://brand.heroku.com/static/media/heroku-logo-stroke.aa0b53be.svg">
+   <figcaption>heroku-free tier dyno</figcaption>
+</figure>
+</div>
+
 ## features
  - create rooms
  - send emojis
