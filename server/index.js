@@ -90,24 +90,22 @@ io.on('connection', socket => {
    });
    socket.on('MESSAGE',data=>{
        let user=findUser(socket.id);
-       if(user){
-         //  console.log("messAGE",data,user);
-           let parsedMessage=parseMessage(user,data,types.RAW);
-           socket.emit('MESSAGE',{...parsedMessage,isSelf:true});
-           socket.to(user.room).emit('MESSAGE', parsedMessage);
-       }else{
-           socket.emit("ACCESS_DENIED",null);
+       if(!user){
+           //create a new user
+           user=createUser(socket.id,data.username,data.room);
        }
+        let parsedMessage=parseMessage(user,data,types.RAW);
+        socket.emit('MESSAGE',{...parsedMessage,isSelf:true});
+        socket.to(user.room).emit('MESSAGE', parsedMessage);
    });
-   socket.on('ACTION',type=>{
+   socket.on('ACTION',({type,username,room})=>{
        let user=findUser(socket.id);
-       if(user){
-           let parsedMessage=parseMessage(user,{},type);
-           socket.emit('ACTION',{...parsedMessage,isSelf:true});
-           socket.to(user.room).emit('ACTION', parsedMessage);
-       }else{
-           socket.emit("ACCESS_DENIED",null);
+       if(!user){
+          user=createUser(socket.id,username,room); 
        }
+        let parsedMessage=parseMessage(user,{},type);
+        socket.emit('ACTION',{...parsedMessage,isSelf:true});
+        socket.to(user.room).emit('ACTION', parsedMessage);
    })
    socket.on('disconnect',()=>{
       let user=removeUser(socket.id);

@@ -12,8 +12,8 @@
  - send lottie reactions 
       - available lotties are HEART,LIKE,DISLIKE,STATHOME
 -----
-
-
+### ***feel free to clone and contribute a feature and make a pull request***
+----
 ### versions
    - 0.0.1 (current)
       - takes username and room id

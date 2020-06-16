@@ -27,20 +27,21 @@ function Chat() {
   const [connecting, setConnecting]=useState(true);
   const [connected, setConnected] = useState(false);
   const [connectionError, setConnectionError] = useState(false);
-
-
+  let username="";
+  let room="";
   const socket=useRef();
   const emitMessage=(data)=>{
-    socket.current.emit('MESSAGE', {type:"RAW",data});
+    socket.current.emit('MESSAGE', {type:"RAW",data,username,room});
   }
   const emitAction=(type)=>{
-     socket.current.emit('ACTION',type);
+     socket.current.emit('ACTION',{type,username,room});
   }
 
   useEffect(() => {
     let urlparams=new URLSearchParams(window.location.search);
-    let username=urlparams.get('username');
-    let room=urlparams.get('room');
+    username=urlparams.get('username');
+    room=urlparams.get('room');
+    
 
     socket.current = socketio(API_URL);
     socket.current.on('connect',()=>{
@@ -54,13 +55,9 @@ function Chat() {
         })
         //actions on ui screen
         socket.current.on('ACTION',data=>{
-          console.log("actionslgk   ..",data)
-              // if (data.type === ACTIONS.BLINK) {
-                console.log("sgksjglkklslk")
-                setActionData(data);
-                setActionType(data.type);
-                setAction(true);
-              // }
+              setActionData(data);
+              setActionType(data.type);
+              setAction(true);
         })
         socket.current.on('NEW_USER',msg=>{ 
             setMessages(messages=>[...messages,<InfoMessage key={messages.length} message={msg}/>])
