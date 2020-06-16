@@ -8,9 +8,7 @@ import {InfoMessage,WarnMessage} from "./components/MessageUtils";
 import {useHistory,} from 'react-router-dom';
 
 import Action from "./components/Action";
-
-const API_URL = "https://anonymouschatrooms.herokuapp.com"; //PROD
-// const API_URL = "http://localhost:3001"; //DEV
+import {API_URL,API_URL_DEV} from "./config.json";
 
 
 function Chat() {
@@ -41,9 +39,9 @@ function Chat() {
     let urlparams=new URLSearchParams(window.location.search);
     username=urlparams.get('username');
     room=urlparams.get('room');
-    
-
-    socket.current = socketio(API_URL);
+    let END_POINT = process.env.NODE_ENV === 'development'?API_URL_DEV:API_URL;
+    console.log(END_POINT);
+    socket.current = socketio(END_POINT);
     socket.current.on('connect',()=>{
         socket.current.emit('JOIN_ROOM',{username,room});
         socket.current.on('MESSAGE',(data)=>{

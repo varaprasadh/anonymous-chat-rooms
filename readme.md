@@ -1,5 +1,15 @@
+<p align='center'>
+ <img src='./client/public/android-icon-192x192.png' />
+</p>
+
 # anonymous chat rooms
  
+![](https://img.shields.io/badge/licence-MIT-green)
+![](https://img.shields.io/github/followers/varaprasadh?label=follow&style=social)![](https://img.shields.io/node/v-lts/express/latest)
+![](https://img.shields.io/badge/version-0.0.1-red)
+
+
+
  it is a open source chat app runs on react and nodejs powered by   socket.io
 ## features
  - create rooms
@@ -12,11 +22,35 @@
  - send lottie reactions 
       - available lotties are HEART,LIKE,DISLIKE,STATHOME
 -----
-### ***feel free to clone and contribute a feature and make a pull request***
-----
+#### ***feel free to clone and contribute a feature and make a pull request***
+---
+
+ [click here](https://github.com/varaprasadh/anonymous-chat-rooms/issues) to report any bugs or issues
+
+## configure development environment
+  - clone the repo
+  - go to the ```/client``` directory and run 
+     - ```
+        npm install 
+       ```
+     - ```
+        npm start
+       ```
+   - open a new terminal tab/window and go to the  ```/server```    directory and run
+     - ```
+        npm install
+       ```
+     - ```
+        npm start
+       ```
+   - open browser and go to where the react app running on!
+
+`note:` client socket needs an endpoint on which socket server is running,so make sure `if you change your port or ip on server`,change it on client by going `/client/src/config.json`;
+
+
 ### versions
    - 0.0.1 (current)
-      - takes username and room id
+      - takes username and room id to join in
    - 0.0.2 (upcoming)
      - cli-version
      - randomised chatroom connections
