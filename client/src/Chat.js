@@ -29,10 +29,10 @@ function Chat() {
   let room="";
   const socket=useRef();
   const emitMessage=(data)=>{
-    socket.current.emit('MESSAGE', {type:"RAW",data,username,room});
+    socket.current.emit('MESSAGE', {type:"RAW",data,username,room,timestamp:Date.now()});
   }
   const emitAction=(type)=>{
-     socket.current.emit('ACTION',{type,username,room});
+     socket.current.emit('ACTION',{type,username,room,timestamp:Date.now()});
   }
 
   useEffect(() => {

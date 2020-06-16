@@ -59,12 +59,12 @@ const types={
     ACTION:"ACTION"  //UI action
 }
 
-const parseMessage=(user,{data},parseType)=>{
+const parseMessage=(user,{data,timestamp},parseType)=>{
 
   let message={
       username:user.username,
       id:user.id,
-      time:moment().format("h:mm a"), 
+      time:moment(timestamp).format("h:mm a"), 
       type:parseType,
       content:data,
       isSelf:false //default

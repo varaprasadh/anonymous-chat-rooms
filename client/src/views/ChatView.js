@@ -24,7 +24,6 @@ function ChatView({messages,emitMessage,roomInfo,emitAction}) {
     const [showPicker,setShowPicker] = useState(false);
     const [actionBar, setActionBar] = useState(true);
      
-    const inputRef=useRef();
     function sendMessage(e) {
         if(message.trim()===""){
             return;
@@ -34,9 +33,7 @@ function ChatView({messages,emitMessage,roomInfo,emitAction}) {
              setMessage("");
         }
     } 
-    useEffect(()=>{
-      inputRef.current.focus();
-    },[])
+
     return (
         <>
         <NavBar roomInfo={roomInfo} />
@@ -56,7 +53,7 @@ function ChatView({messages,emitMessage,roomInfo,emitAction}) {
                             <FaRegLaugh size={25} color="rgb(15, 72, 146)"/>
                         </button>
                         <div className="input-element">
-                            <input ref={inputRef} placeholder="start typing..." onClick={()=>setShowPicker(false)} onKeyUp={sendMessage} type="text" value={message} onChange={e=>setMessage(e.target.value)}/>
+                            <input  placeholder="start typing..." onClick={()=>setShowPicker(false)} onKeyUp={sendMessage} type="text" value={message} onChange={e=>setMessage(e.target.value)}/>
                         </div>
                         <button className="button send" onClick={sendMessage}>
                             <FaTelegramPlane size={25}/>
